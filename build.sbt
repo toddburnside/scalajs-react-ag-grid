@@ -2,9 +2,13 @@ name := "scalajs-react-ag-grid"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-val agGrid       = "24.1.0"
-val scalaJsReact = "1.7.3"
-val reactJS      = "16.13.1"
+val agGrid        = "24.1.0"
+val scalaJsReact  = "1.7.7"
+val reactJS       = "16.14.0"
+val reactTypes    = "16.14.0"
+val reactDomTypes = "16.9.10"
+val jestJS        = "25.4.0"
+val jestTypes     = "25.2.3"
 
 parallelExecution in (ThisBuild, Test) := false
 
@@ -109,6 +113,7 @@ lazy val demo =
       npmDependencies in Compile ++= Seq(
         "react"             -> reactJS,
         "react-dom"         -> reactJS,
+        "ag-grid-react"     -> agGrid,
         "ag-grid-community" -> agGrid
       ),
       // don't publish the demo
@@ -147,21 +152,26 @@ lazy val facade =
       npmDependencies in Compile ++= Seq(
         "react"             -> reactJS,
         "react-dom"         -> reactJS,
-        "ag-grid-community" -> agGrid
+        "@types/react"      -> reactTypes,
+        "@types/react-dom"  -> reactDomTypes,
+        "ag-grid-community" -> agGrid,
+        "ag-grid-react"     -> agGrid,
+        "jest"              -> jestJS,
+        "@types/jest"       -> jestTypes
       ),
       stUseScalaJsDom := true,
       stOutputPackage := "lucuma",
       stFlavour := Flavour.Japgolly,
-      stIgnore ++= List("react", "react-dom"),
-      Compile / stMinimize := Selection.AllExcept("ag-grid"),
-      // stEnableScalaJsDefined := Selection.All,
+      Compile / stMinimize := Selection.All,
       scalacOptions ~= (_.filterNot(
         Set(
           // By necessity facades will have unused params
           "-Wdead-code",
           "-Wunused:params",
           "-Wunused:explicits",
-          "-Wunused:imports"
+          "-Wunused:imports",
+          "-Wvalue-discard",
+          "-Xlint:missing-interpolator"
         )
       )),
       // Some Scalablytyped generated Scaladocs are malformed.
