@@ -160,7 +160,7 @@ lazy val facade =
         "@types/jest"       -> jestTypes
       ),
       stUseScalaJsDom := true,
-      stOutputPackage := "lucuma",
+      stOutputPackage := "reactST",
       stFlavour := Flavour.Japgolly,
       Compile / stMinimize := Selection.All,
       scalacOptions ~= (_.filterNot(

@@ -7,7 +7,7 @@ import scala.scalajs.js
 import js.annotation._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-import lucuma.agGridReact.components._
+import reactST.agGridReact.components._
 
 @JSExportTopLevel("DemoMain")
 object DemoMain {
