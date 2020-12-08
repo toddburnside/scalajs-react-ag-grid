@@ -42,6 +42,12 @@ inThisBuild(
         "Carlos Quiroz",
         "carlos.m.quiroz@gmail.com",
         url("https://github.com/cquiroz")
+      ),
+      Developer(
+        "toddburnside ",
+        "Todd Burnside",
+        "tburnside@gemini.edu",
+        url("https://github.com/toddburnside")
       )
     ),
     scmInfo := Some(
