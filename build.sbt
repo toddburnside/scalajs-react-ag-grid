@@ -4,8 +4,8 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 
 val agGrid             = "24.1.0"
 val scalaJsReact       = "1.7.7"
-val reactJS            = "16.14.0"
-val reactTypes         = "16.14.0"
+val reactJS            = "16.13.1"
+val reactTypes         = "16.9.56"
 val reactDomTypes      = "16.9.10"
 val jestJS             = "25.4.0"
 val jestTypes          = "25.2.3"
@@ -170,7 +170,7 @@ lazy val facade =
       stUseScalaJsDom := true,
       stOutputPackage := "reactST",
       stFlavour := Flavour.Japgolly,
-      Compile / stMinimize := Selection.All,
+      Compile / stMinimize := Selection.AllExcept("ag-grid-community", "ag-grid-react"),
       scalacOptions ~= (_.filterNot(
         Set(
           // By necessity facades will have unused params
