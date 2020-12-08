@@ -2,13 +2,15 @@ name := "scalajs-react-ag-grid"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-val agGrid        = "24.1.0"
-val scalaJsReact  = "1.7.7"
-val reactJS       = "16.14.0"
-val reactTypes    = "16.14.0"
-val reactDomTypes = "16.9.10"
-val jestJS        = "25.4.0"
-val jestTypes     = "25.2.3"
+val agGrid             = "24.1.0"
+val scalaJsReact       = "1.7.7"
+val reactJS            = "16.14.0"
+val reactTypes         = "16.14.0"
+val reactDomTypes      = "16.9.10"
+val jestJS             = "25.4.0"
+val jestTypes          = "25.2.3"
+val scalaJsReactCommon = "0.11.2"
+val uTest              = "0.7.4"
 
 parallelExecution in (ThisBuild, Test) := false
 
@@ -151,9 +153,9 @@ lazy val facade =
       scalaJSStage in Test := FastOptStage,
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core"   % scalaJsReact,
-        "io.github.cquiroz.react"           %%% "common" % "0.9.8",
+        "io.github.cquiroz.react"           %%% "common" % scalaJsReactCommon,
         "com.github.japgolly.scalajs-react" %%% "test"   % scalaJsReact % Test,
-        "com.lihaoyi"                       %%% "utest"  % "0.7.4"      % Test
+        "com.lihaoyi"                       %%% "utest"  % uTest        % Test
       ),
       npmDependencies in Compile ++= Seq(
         "react"             -> reactJS,
